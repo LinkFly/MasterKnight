@@ -46,6 +46,7 @@ void ACustomCharacterBase::Damage(ACustomCharacterBase * Opponent)
 
 void ACustomCharacterBase::NotifyActorBeginOverlap(AActor * OtherActor)
 {
-	GEngine->AddOnScreenDebugMessage(-1, 5, FColor::Red, TEXT("Overlap"));
+	GEngine->AddOnScreenDebugMessage(-1, 10, FColor::Red, TEXT("this: ") + GetName() + TEXT("Overlap"));
+	GEngine->AddOnScreenDebugMessage(-1, 10, FColor::Red, TEXT("OtherActor: ") + OtherActor->GetName() + TEXT("Overlap"));
 }
 
