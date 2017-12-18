@@ -48,6 +48,7 @@ void ACustomCharacterBase::Damage(ACustomCharacterBase * Opponent)
 	if (Life <= 0) {
 		IsDeath = true;
 		IsAttack = false;
+		Target = nullptr;
 		Opponent->IsAttack = false;
 	}
 }

@@ -18,5 +18,68 @@ AKnightCharacter::AKnightCharacter() {
 	else {
 		GEngine->AddOnScreenDebugMessage(-1, 10, FColor::Red, TEXT("ERROR: Failing attach sword component!"));
 	}
-	
+	SpringArm = CreateDefaultSubobject<USpringArmComponent>("CameraBoom");
+	SpringArm->TargetArmLength = 300;
+	SpringArm->bUsePawnControlRotation = true;
+	SpringArm->SetupAttachment(RootComponent);
+	CameraFollow = CreateDefaultSubobject<UCameraComponent>(TEXT("Camera"));
+	CameraFollow->bUsePawnControlRotation = false;
+	CameraFollow->SetupAttachment(SpringArm, USpringArmComponent::SocketName);
+}
+
+void AKnightCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
+{
+	Super::SetupPlayerInputComponent(PlayerInputComponent);
+	PlayerInputComponent->BindAction(TEXT("Attack"), IE_Pressed, this, &AKnightCharacter::SwordAttack);
+	PlayerInputComponent->BindAxis(TEXT("ForwardMove"), this, &AKnightCharacter::ForwardMove);
+	PlayerInputComponent->BindAxis(TEXT("RightMove"), this, &AKnightCharacter::RightMove);
+	PlayerInputComponent->BindAxis(TEXT("TurnHoriz"), this, &APawn::AddControllerYawInput);
+	PlayerInputComponent->BindAxis(TEXT("TurnVert"), this, &APawn::AddControllerPitchInput);
+}
+
+void AKnightCharacter::SwordAttack()
+{
+	//GEngine->AddOnScreenDebugMessage(-1, 3, FColor::Green, TEXT("Attack"));
+	BeginAttack(nullptr);
+}
+
+void AKnightCharacter::ForwardMove(float AxisValue)
+{
+	//GEngine->AddOnScreenDebugMessage(-1, 3, FColor::Green, TEXT("ForwardMove: ") + FString::SanitizeFloat(AxisValue));
+	BackwardForwardAxisValue = AxisValue;
+	BaseMove(AxisValue, EAxis::X);
+}
+
+void AKnightCharacter::RightMove(float AxisValue)
+{
+	//GEngine->AddOnScreenDebugMessage(-1, 3, FColor::Green, TEXT("RightMove: ") + FString::SanitizeFloat(AxisValue));
+	BaseMove(AxisValue, EAxis::Y);
+	LeftRightAxisValue = AxisValue;
+}
+
+void AKnightCharacter::BaseMove(float AxisValue, EAxis::Type Side)
+{
+	if (Controller) {
+		const FRotator Rotation = Controller->GetControlRotation();
+		const FRotator YawRotation(0, Rotation.Yaw, 0);
+		const FVector Direction = FRotationMatrix(YawRotation).GetUnitAxis(Side);
+		AddMovementInput(Direction, AxisValue); 
+	}
+}
+
+void AKnightCharacter::Tick(float DeltaTime)
+{
+	Super::Tick(DeltaTime);
+	//if (FMath::IsNearlyEqual(1.0f, ForwardBackwardAxisValue)) {
+	//	MoveSide = ESide::Forward;
+	//}
+	//else if (FMath::IsNearlyEqual(-1.0f, ForwardBackwardAxisValue)) {
+	//	MoveSide = ESide::Backward;
+	//}
+	//else if (FMath::IsNearlyEqual(1.0f, RightLeftAxisValue)) {
+	//	MoveSide = ESide::Right;
+	//}
+	//else if (FMath::IsNearlyEqual(-1.0f, RightLeftAxisValue)) {
+	//	MoveSide = ESide::Left;
+	//}
 }

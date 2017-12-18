@@ -47,7 +47,7 @@ public:
 		bool IsDeath = false;
 
 	UFUNCTION(BlueprintCallable)
-		void BeginAttack(ACustomCharacterBase* Opponent);
+		void BeginAttack(ACustomCharacterBase * Opponent);
 
 	UFUNCTION(BlueprintCallable)
 		void Attack(ACustomCharacterBase* Opponent);
