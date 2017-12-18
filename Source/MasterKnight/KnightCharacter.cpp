@@ -59,7 +59,7 @@ void AKnightCharacter::RightMove(float AxisValue)
 
 void AKnightCharacter::BaseMove(float AxisValue, EAxis::Type Side)
 {
-	if (Controller) {
+	if (Controller && !IsDeath) {
 		const FRotator Rotation = Controller->GetControlRotation();
 		const FRotator YawRotation(0, Rotation.Yaw, 0);
 		const FVector Direction = FRotationMatrix(YawRotation).GetUnitAxis(Side);
@@ -70,6 +70,9 @@ void AKnightCharacter::BaseMove(float AxisValue, EAxis::Type Side)
 void AKnightCharacter::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
+	float size = AttackCapsule->GetComponentLocation().Size();
+	GEngine->AddOnScreenDebugMessage(-1, 8, FColor::Cyan, FString::SanitizeFloat(size));
+
 	//if (FMath::IsNearlyEqual(1.0f, ForwardBackwardAxisValue)) {
 	//	MoveSide = ESide::Forward;
 	//}

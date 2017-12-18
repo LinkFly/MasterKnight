@@ -42,7 +42,8 @@ public:
 		float BackwardForwardAxisValue;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 		float LeftRightAxisValue;
-	
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+		UCapsuleComponent* AttackCapsule;
 
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 	// Called every frame
