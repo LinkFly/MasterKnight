@@ -71,18 +71,4 @@ void AKnightCharacter::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 	float size = AttackCapsule->GetComponentLocation().Size();
-	GEngine->AddOnScreenDebugMessage(-1, 8, FColor::Cyan, FString::SanitizeFloat(size));
-
-	//if (FMath::IsNearlyEqual(1.0f, ForwardBackwardAxisValue)) {
-	//	MoveSide = ESide::Forward;
-	//}
-	//else if (FMath::IsNearlyEqual(-1.0f, ForwardBackwardAxisValue)) {
-	//	MoveSide = ESide::Backward;
-	//}
-	//else if (FMath::IsNearlyEqual(1.0f, RightLeftAxisValue)) {
-	//	MoveSide = ESide::Right;
-	//}
-	//else if (FMath::IsNearlyEqual(-1.0f, RightLeftAxisValue)) {
-	//	MoveSide = ESide::Left;
-	//}
 }

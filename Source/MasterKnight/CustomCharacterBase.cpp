@@ -14,7 +14,9 @@ ACustomCharacterBase::ACustomCharacterBase()
 void ACustomCharacterBase::BeginPlay()
 {
 	Super::BeginPlay();
-	
+	if (AttackCapsule) {
+		PredAttackCapsuleLocation = AttackCapsule->GetComponentLocation();
+	}
 }
 
 // Called every frame
@@ -22,6 +24,15 @@ void ACustomCharacterBase::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 	Speed = GetVelocity().Size();
+	if (AttackCapsule) {
+		FVector curAttackCapsuleLocation = AttackCapsule->GetComponentLocation();
+		FVector DiffLocation = curAttackCapsuleLocation - PredAttackCapsuleLocation;
+		AttackingDiff = DiffLocation.Size();
+		if (IsAttack && (AttackingDiff >= MinAttackingDiff) && !IsDeath) {
+			IsEnoughAttackPower = true;
+		}
+		PredAttackCapsuleLocation = curAttackCapsuleLocation;
+	}
 }
 
 // Called to bind functionality to input
@@ -53,9 +64,8 @@ void ACustomCharacterBase::Damage(ACustomCharacterBase * Opponent)
 	}
 }
 
-void ACustomCharacterBase::NotifyActorBeginOverlap(AActor * OtherActor)
-{
-	/*GEngine->AddOnScreenDebugMessage(-1, 10, FColor::Red, TEXT("this: ") + GetName() + TEXT(" (Overlap)"));
-	GEngine->AddOnScreenDebugMessage(-1, 10, FColor::Red, TEXT("OtherActor: ") + OtherActor->GetName() + TEXT(" (Overlap)"));*/
-}
-
+//void ACustomCharacterBase::NotifyActorBeginOverlap(AActor * OtherActor)
+//{
+//	/*GEngine->AddOnScreenDebugMessage(-1, 10, FColor::Red, TEXT("this: ") + GetName() + TEXT(" (Overlap)"));
+//	GEngine->AddOnScreenDebugMessage(-1, 10, FColor::Red, TEXT("OtherActor: ") + OtherActor->GetName() + TEXT(" (Overlap)"));*/
+//}

@@ -13,7 +13,6 @@
 #include "Camera/CameraComponent.h"
 #include "KnightCharacter.generated.h"
 
-//UENUM()
 namespace ESide {
 	enum {
 		Forward = 1, Right = 2, Backward = 3, Left = 4, None = 0
@@ -36,14 +35,10 @@ public:
 		USpringArmComponent* SpringArm;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 		UCameraComponent* CameraFollow;
-	//UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	//	int32 MoveSide = ESide::None;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 		float BackwardForwardAxisValue;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 		float LeftRightAxisValue;
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-		UCapsuleComponent* AttackCapsule;
 
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 	// Called every frame
