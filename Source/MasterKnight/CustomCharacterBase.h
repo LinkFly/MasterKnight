@@ -47,13 +47,15 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 		float AttackSpeed;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-		float MinAttackSpeed = 0.5;
+		float MinAttackSpeed = 1.0f;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 		float MinAttackingDiff = 20;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 		float AttackingDiff = 0;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 		bool IsEnoughAttackPower = false;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+		bool IsPowerAttack = false;
 
 	UFUNCTION(BlueprintCallable)
 		void BeginAttack(ACustomCharacterBase * Opponent);

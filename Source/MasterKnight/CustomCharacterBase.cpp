@@ -38,6 +38,7 @@ void ACustomCharacterBase::Tick(float DeltaTime)
 		FVector DiffLocation = curAttackCapsuleLocation - PredAttackCapsuleLocation;
 		AttackingDiff = DiffLocation.Size();
 		AttackSpeed = AttackingDiff * DeltaTime;
+		GEngine->AddOnScreenDebugMessage(-1, 5, FColor::Green, FString::SanitizeFloat(AttackSpeed));
 		if (IsAttack && (AttackSpeed >= MinAttackSpeed) && !IsDeath) {
 			IsEnoughAttackPower = true;
 			//GEngine->AddOnScreenDebugMessage(-1, 5, FColor::Green, FString::SanitizeFloat(AttackSpeed));
