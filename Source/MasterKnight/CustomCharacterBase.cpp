@@ -14,9 +14,16 @@ ACustomCharacterBase::ACustomCharacterBase()
 void ACustomCharacterBase::BeginPlay()
 {
 	Super::BeginPlay();
+	InitSomeFields();
+}
+
+void ACustomCharacterBase::InitSomeFields() {
 	if (AttackCapsule) {
 		PredAttackCapsuleLocation = AttackCapsule->GetComponentLocation();
+		IsEnoughAttackPower = false;
 	}
+	IsAttack = false;
+	Target = nullptr;
 }
 
 // Called every frame
@@ -25,11 +32,15 @@ void ACustomCharacterBase::Tick(float DeltaTime)
 	Super::Tick(DeltaTime);
 	Speed = GetVelocity().Size();
 	if (AttackCapsule) {
+		//AttackSpeed = AttackCapsule->GetComponentVelocity().Size();
+		
 		FVector curAttackCapsuleLocation = AttackCapsule->GetComponentLocation();
 		FVector DiffLocation = curAttackCapsuleLocation - PredAttackCapsuleLocation;
 		AttackingDiff = DiffLocation.Size();
-		if (IsAttack && (AttackingDiff >= MinAttackingDiff) && !IsDeath) {
+		AttackSpeed = AttackingDiff * DeltaTime;
+		if (IsAttack && (AttackSpeed >= MinAttackSpeed) && !IsDeath) {
 			IsEnoughAttackPower = true;
+			//GEngine->AddOnScreenDebugMessage(-1, 5, FColor::Green, FString::SanitizeFloat(AttackSpeed));
 		}
 		PredAttackCapsuleLocation = curAttackCapsuleLocation;
 	}
@@ -49,7 +60,8 @@ void ACustomCharacterBase::BeginAttack(ACustomCharacterBase * Opponent)
 
 void ACustomCharacterBase::Attack(ACustomCharacterBase * Opponent)
 {
-	GEngine->AddOnScreenDebugMessage(-1, 10, FColor::Red, GetName() + TEXT(" > ") + Opponent->GetName() + TEXT(" (Attack)"));
+	//GEngine->AddOnScreenDebugMessage(-1, 10, FColor::Red, GetName() + TEXT(" > ") + Opponent->GetName() + TEXT(" (Attack)"));
+	InitSomeFields();
 	Opponent->Damage(this);
 }
  
@@ -58,9 +70,7 @@ void ACustomCharacterBase::Damage(ACustomCharacterBase * Opponent)
 	Life -= Opponent->Power;
 	if (Life <= 0) {
 		IsDeath = true;
-		IsAttack = false;
-		Target = nullptr;
-		Opponent->IsAttack = false;
+		InitSomeFields();
 	}
 }
 

@@ -45,6 +45,10 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 		UCapsuleComponent* AttackCapsule;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+		float AttackSpeed;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+		float MinAttackSpeed = 0.5;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 		float MinAttackingDiff = 20;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 		float AttackingDiff = 0;
@@ -57,7 +61,9 @@ public:
 		void Attack(ACustomCharacterBase* Opponent);
 	UFUNCTION(BlueprintCallable)
 		void Damage(ACustomCharacterBase* Opponent);
-
+	UFUNCTION(BlueprintCallable)
+		void InitSomeFields();
 private:
 	FVector PredAttackCapsuleLocation;
+
 };
