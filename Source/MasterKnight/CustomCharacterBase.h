@@ -45,6 +45,8 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 		UCapsuleComponent* AttackCapsule;
+
+	// Trash, req delete
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 		float AttackSpeed;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
@@ -55,6 +57,8 @@ public:
 		float AttackingDiff = 0;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 		bool IsEnoughAttackPower = false;
+	/////////////////////////
+
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 		bool IsPowerAttack = false;
 

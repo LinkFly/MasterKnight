@@ -26,7 +26,6 @@ void ACustomCharacterBase::InitSomeFields() {
 		IsEnoughAttackPower = false;
 	}
 	IsAttack = false;
-	Target = nullptr;
 }
 
 void ACustomCharacterBase::OnOverlapBegin(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
@@ -93,6 +92,7 @@ void ACustomCharacterBase::Damage(ACustomCharacterBase * Opponent)
 
 void ACustomCharacterBase::Death() {
 	IsDeath = true;
+	Target = nullptr;
 	InitSomeFields();
 	GetCapsuleComponent()->SetCollisionProfileName(FName("CharacterMesh"));
 }
