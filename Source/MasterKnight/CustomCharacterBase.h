@@ -6,6 +6,7 @@
 #include "GameFramework/Character.h"
 #include "GameFramework/Actor.h"
 #include "Runtime/Engine/Classes/GameFramework/CharacterMovementComponent.h"
+#include "Components/PrimitiveComponent.h"
 #include "CustomCharacterBase.generated.h"
 
 UCLASS()
@@ -65,7 +66,14 @@ public:
 		void Damage(ACustomCharacterBase* Opponent);
 	UFUNCTION(BlueprintCallable)
 		void InitSomeFields();
+	UFUNCTION()
+		void OnOverlapBegin(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult);
+		//void OnOverlapBegin(class AActor* OtherActor, class UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult);
 private:
 	FVector PredAttackCapsuleLocation;
+	void Death();
+
+protected:
+	virtual bool CheckFriend(ACustomCharacterBase* Opponent);
 
 };

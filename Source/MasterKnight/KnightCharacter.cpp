@@ -21,6 +21,7 @@ AKnightCharacter::AKnightCharacter() {
 	SpringArm = CreateDefaultSubobject<USpringArmComponent>("CameraBoom");
 	SpringArm->TargetArmLength = 300;
 	SpringArm->bUsePawnControlRotation = true;
+	SpringArm->bDoCollisionTest = false;
 	SpringArm->SetupAttachment(RootComponent);
 	CameraFollow = CreateDefaultSubobject<UCameraComponent>(TEXT("Camera"));
 	CameraFollow->bUsePawnControlRotation = false;
@@ -70,5 +71,4 @@ void AKnightCharacter::BaseMove(float AxisValue, EAxis::Type Side)
 void AKnightCharacter::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-	float size = AttackCapsule->GetComponentLocation().Size();
 }

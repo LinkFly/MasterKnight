@@ -13,8 +13,11 @@ UCLASS()
 class MASTERKNIGHT_API AEnemyCharacterBase : public ACustomCharacterBase
 {
 	GENERATED_BODY()
-	
-	
-	
-	
+
+public:
+	AEnemyCharacterBase();
+	virtual void BeginPlay() override;
+
+protected:
+	virtual bool CheckFriend(ACustomCharacterBase* Opponent) override;
 };
