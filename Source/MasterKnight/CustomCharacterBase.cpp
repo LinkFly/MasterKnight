@@ -78,7 +78,7 @@ void ACustomCharacterBase::BeginAttack(ACustomCharacterBase * Opponent)
 void ACustomCharacterBase::Attack(ACustomCharacterBase * Opponent)
 {
 	GEngine->AddOnScreenDebugMessage(-1, 10, FColor::Red, GetName() + TEXT(" > ") + Opponent->GetName() + TEXT(" (Attack)"));
-	InitSomeFields();
+	/*InitSomeFields();*/
 	Opponent->Damage(this);
 }
  
