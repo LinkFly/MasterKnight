@@ -5,3 +5,6 @@ Saved
 *.sln
 *.VC.db
 *.VC.opendb
+Content/reserv.*
+Content/tmp
+Content/Audio
