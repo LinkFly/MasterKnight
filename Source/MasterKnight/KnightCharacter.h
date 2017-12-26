@@ -11,6 +11,7 @@
 #include "Engine.h"
 #include "GameFramework/SpringArmComponent.h"
 #include "Camera/CameraComponent.h"
+#include "CustomGameInstance.h"
 #include "KnightCharacter.generated.h"
 
 namespace ESide {
@@ -41,6 +42,7 @@ public:
 		float LeftRightAxisValue;
 
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
+	virtual void BeginPlay() override;
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 	void SwordAttack();

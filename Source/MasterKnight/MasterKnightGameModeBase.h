@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/GameModeBase.h"
+#include "CustomGameInstance.h"
 #include "MasterKnightGameModeBase.generated.h"
 
 /**
@@ -15,6 +16,8 @@ class MASTERKNIGHT_API AMasterKnightGameModeBase : public AGameModeBase
 	GENERATED_BODY()
 	
 	
-	
+protected:
+	virtual void BeginPlay() override;
+
 	
 };

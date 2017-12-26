@@ -26,6 +26,7 @@ AKnightCharacter::AKnightCharacter() {
 	CameraFollow = CreateDefaultSubobject<UCameraComponent>(TEXT("Camera"));
 	CameraFollow->bUsePawnControlRotation = false;
 	CameraFollow->SetupAttachment(SpringArm, USpringArmComponent::SocketName);
+
 }
 
 void AKnightCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
@@ -36,6 +37,14 @@ void AKnightCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCom
 	PlayerInputComponent->BindAxis(TEXT("RightMove"), this, &AKnightCharacter::RightMove);
 	PlayerInputComponent->BindAxis(TEXT("TurnHoriz"), this, &APawn::AddControllerYawInput);
 	PlayerInputComponent->BindAxis(TEXT("TurnVert"), this, &APawn::AddControllerPitchInput);
+}
+
+void AKnightCharacter::BeginPlay()
+{
+	Super::BeginPlay();
+	auto gameInstance = Cast<UCustomGameInstance>(GetGameInstance());
+	gameInstance->SetPlayerCharacter(this);
+	GEngine->AddOnScreenDebugMessage(-1, 5, FColor::Green, TEXT("init gameinstance"));
 }
 
 void AKnightCharacter::SwordAttack()
@@ -71,4 +80,5 @@ void AKnightCharacter::BaseMove(float AxisValue, EAxis::Type Side)
 void AKnightCharacter::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
+	
 }
