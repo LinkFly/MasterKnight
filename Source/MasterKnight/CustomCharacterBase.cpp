@@ -77,8 +77,7 @@ void ACustomCharacterBase::BeginAttack(ACustomCharacterBase * Opponent)
 
 void ACustomCharacterBase::Attack(ACustomCharacterBase * Opponent)
 {
-	GEngine->AddOnScreenDebugMessage(-1, 10, FColor::Red, GetName() + TEXT(" > ") + Opponent->GetName() + TEXT(" (Attack)"));
-	/*InitSomeFields();*/
+	GEngine->AddOnScreenDebugMessage(-1, 10, FColor::Green, GetName() + TEXT(" > ") + Opponent->GetName() + TEXT(" (Attack)"));
 	Opponent->Damage(this);
 }
  
@@ -87,6 +86,9 @@ void ACustomCharacterBase::Damage(ACustomCharacterBase * Opponent)
 	Life -= Opponent->Power;
 	if (Life <= 0) {
 		Death();
+	}
+	else {
+		IsDamage = true;
 	}
 }
 

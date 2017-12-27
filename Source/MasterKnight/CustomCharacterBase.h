@@ -41,7 +41,10 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 		int32 Power = 100;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+		bool IsDamage = false;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 		bool IsDeath = false;
+
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 		UCapsuleComponent* AttackCapsule;
