@@ -1,6 +1,7 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 #include "CustomCharacterBase.h"
+#include "Thing.h"
 #include "Engine.h"
 
 // Sets default values
@@ -77,8 +78,10 @@ void ACustomCharacterBase::BeginAttack(ACustomCharacterBase * Opponent)
 
 void ACustomCharacterBase::Attack(ACustomCharacterBase * Opponent)
 {
-	GEngine->AddOnScreenDebugMessage(-1, 10, FColor::Green, GetName() + TEXT(" > ") + Opponent->GetName() + TEXT(" (Attack)"));
 	Opponent->Damage(this);
+	FString NameLife = GetName() + TEXT("(") + FString::FromInt(Life) + TEXT(")");
+	FString OpponentNameLife = Opponent->GetName() + TEXT("(") + FString::FromInt(Opponent->Life) + TEXT(")");
+	GEngine->AddOnScreenDebugMessage(-1, 10, FColor::Green, NameLife + TEXT(" > ") + OpponentNameLife);
 }
  
 void ACustomCharacterBase::Damage(ACustomCharacterBase * Opponent)
@@ -97,6 +100,7 @@ void ACustomCharacterBase::Death() {
 	Target = nullptr;
 	InitSomeFields();
 	GetCapsuleComponent()->SetCollisionProfileName(FName("CharacterMesh"));
+	AttackCapsule->SetCollisionProfileName(FName("NoCollision"));
 }
 //void ACustomCharacterBase::NotifyActorBeginOverlap(AActor * OtherActor)
 //{
@@ -106,4 +110,19 @@ void ACustomCharacterBase::Death() {
 
 bool ACustomCharacterBase::CheckFriend(ACustomCharacterBase* Opponent) {
 	return false;
+}
+
+void ACustomCharacterBase::AddThing_Implementation(AThingBase * Thing)
+{
+	if (Things.Find(Thing) == INDEX_NONE) {
+		Things.Add(Thing);
+	}
+}
+
+void ACustomCharacterBase::DelThing_Implementation(AThingBase * Thing)
+{
+	int32 idx = Things.Find(Thing);
+	if (idx != INDEX_NONE) {
+		Things.RemoveAt(idx);
+	}
 }

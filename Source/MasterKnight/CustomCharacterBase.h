@@ -7,6 +7,7 @@
 #include "GameFramework/Actor.h"
 #include "Runtime/Engine/Classes/GameFramework/CharacterMovementComponent.h"
 #include "Components/PrimitiveComponent.h"
+#include "ThingBase.h"
 #include "CustomCharacterBase.generated.h"
 
 UCLASS()
@@ -29,7 +30,8 @@ public:
 
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
-
+	//UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	//	bool IsPlayerCharacter = false;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="GameplayProps")
 		AActor* Target;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
@@ -65,6 +67,9 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 		bool IsPowerAttack = false;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+		TArray<AThingBase*> Things;
+
 	UFUNCTION(BlueprintCallable)
 		void BeginAttack(ACustomCharacterBase * Opponent);
 	UFUNCTION(BlueprintCallable)
@@ -76,11 +81,19 @@ public:
 	UFUNCTION()
 		void OnOverlapBegin(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult);
 		//void OnOverlapBegin(class AActor* OtherActor, class UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult);
+
+	UFUNCTION(BlueprintCallable, BlueprintNativeEvent)
+		void AddThing(AThingBase* Thing);
+	UFUNCTION(BlueprintCallable, BlueprintNativeEvent)
+		void DelThing(AThingBase* Thing);
+
 private:
 	FVector PredAttackCapsuleLocation;
 	void Death();
 
 protected:
 	virtual bool CheckFriend(ACustomCharacterBase* Opponent);
-
+	
 };
+
+

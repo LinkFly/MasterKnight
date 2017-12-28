@@ -26,7 +26,7 @@ AKnightCharacter::AKnightCharacter() {
 	CameraFollow = CreateDefaultSubobject<UCameraComponent>(TEXT("Camera"));
 	CameraFollow->bUsePawnControlRotation = false;
 	CameraFollow->SetupAttachment(SpringArm, USpringArmComponent::SocketName);
-
+	//IsPlayerCharacter = true;
 }
 
 void AKnightCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
@@ -44,7 +44,6 @@ void AKnightCharacter::BeginPlay()
 	Super::BeginPlay();
 	auto gameInstance = Cast<UCustomGameInstance>(GetGameInstance());
 	gameInstance->SetPlayerCharacter(this);
-	GEngine->AddOnScreenDebugMessage(-1, 5, FColor::Green, TEXT("init gameinstance"));
 }
 
 void AKnightCharacter::SwordAttack()
