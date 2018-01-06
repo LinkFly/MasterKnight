@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 #include "Engine.h"
 #include "GameFramework/Actor.h"
+#include "Components/BoxComponent.h"
 #include "ThingBase.generated.h"
 
 UCLASS()
@@ -26,6 +27,8 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "ThingData")
 		FString Title = TEXT("<None>");
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "ThingData")
+		UBoxComponent* ContactZone;
 
 	UFUNCTION(BlueprintCallable, BlueprintNativeEvent)
 		void Apply();

@@ -71,6 +71,8 @@ public:
 		TArray<AThingBase*> Things;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 		UChildActorComponent* WeaponChildActor;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+		AThingBase* Weapon;
 
 	UFUNCTION(BlueprintCallable)
 		void BeginAttack(ACustomCharacterBase * Opponent);
@@ -88,6 +90,10 @@ public:
 		void AddThing(AThingBase* Thing);
 	UFUNCTION(BlueprintCallable, BlueprintNativeEvent)
 		void DelThing(AThingBase* Thing);
+	UFUNCTION(BlueprintCallable)
+		void Equip();
+	UFUNCTION(BlueprintCallable)
+		void UnEquip();
 
 private:
 	FVector PredAttackCapsuleLocation;

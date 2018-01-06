@@ -4,7 +4,6 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
-#include "Components/BoxComponent.h"
 #include "Components/SceneComponent.h"
 #include "CustomCharacterBase.h"
 #include "ThingBase.h"
@@ -28,8 +27,6 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "ThingData")
-		UBoxComponent* ContactZone;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "ThingData")
 		ACustomCharacterBase* OwnerCharacter;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "ThingData")
