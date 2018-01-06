@@ -10,8 +10,8 @@ ACustomCharacterBase::ACustomCharacterBase()
  	// Set this character to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 
-	/*WeaponChildActor = CreateDefaultSubobject<UChildActorComponent>("WeaponChildActor");
-	WeaponChildActor->SetupAttachment(RootComponent);*/
+	WeaponChildActor = CreateDefaultSubobject<UChildActorComponent>("WeaponChildActor");
+	WeaponChildActor->SetupAttachment(RootComponent);
 }
 
 // Called when the game starts or when spawned
@@ -100,22 +100,22 @@ void ACustomCharacterBase::Damage(ACustomCharacterBase * Opponent)
 
 void ACustomCharacterBase::Equip()
 {
-	/*if (WeaponChildActor->GetChildActorClass()) {
+	if (WeaponChildActor->GetChildActorClass()) {
 		Weapon = NewObject<AThingBase>(this, WeaponChildActor->GetChildActorClass());
 		if (Weapon) {
 			FAttachmentTransformRules AttachmentRules(FAttachmentTransformRules::SnapToTargetIncludingScale);
 			Weapon->AttachToComponent(WeaponChildActor, AttachmentRules);
 			Weapon->ContactZone->SetCollisionProfileName(FName("NoCollision"));
 		}
-	}*/
+	}
 }
 
 void ACustomCharacterBase::UnEquip()
 {
-	/*if (Weapon) {
+	if (Weapon) {
 		Weapon->Destroy();
 		Weapon = nullptr;
-	}*/
+	}
 }
 
 void ACustomCharacterBase::Death() {
