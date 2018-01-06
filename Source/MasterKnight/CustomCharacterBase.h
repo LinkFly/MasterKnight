@@ -69,6 +69,8 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 		TArray<AThingBase*> Things;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+		UChildActorComponent* WeaponChildActor;
 
 	UFUNCTION(BlueprintCallable)
 		void BeginAttack(ACustomCharacterBase * Opponent);
