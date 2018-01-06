@@ -91,7 +91,7 @@ void ACustomCharacterBase::Attack(ACustomCharacterBase * Opponent)
  
 void ACustomCharacterBase::Damage(ACustomCharacterBase * Opponent)
 {
-	Life -= Opponent->Power;
+	Life -= Opponent->GetPower();
 	if (Life <= 0) {
 		Death();
 	}
@@ -109,13 +109,15 @@ void ACustomCharacterBase::Equip(AThingBase* NewWeapon)
 		FAttachmentTransformRules AttachmentRules(FAttachmentTransformRules::SnapToTargetIncludingScale);
 		NewWeapon->AttachToComponent(GetMesh(), AttachmentRules, FName("hand_rSocket"));
 		NewWeapon->bHidden = false;
+		Weapon->IsEquip = true;
 	}
 }
 
 void ACustomCharacterBase::UnEquip()
 {
 	if (Weapon) {
-		Weapon->DetachSceneComponentsFromParent(Weapon->GetParentComponent());
+		Weapon->IsEquip = false;
+		Weapon->SetActorHiddenInGame(true);
 		Weapon = nullptr;
 	}
 }
@@ -126,6 +128,10 @@ void ACustomCharacterBase::Death() {
 	InitSomeFields();
 	GetCapsuleComponent()->SetCollisionProfileName(FName("CharacterMesh"));
 	AttackCapsule->SetCollisionProfileName(FName("NoCollision"));
+}
+int32 ACustomCharacterBase::GetPower()
+{
+	return !Weapon ? Power : Weapon->Power;
 }
 //void ACustomCharacterBase::NotifyActorBeginOverlap(AActor * OtherActor)
 //{

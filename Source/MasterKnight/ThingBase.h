@@ -29,6 +29,12 @@ public:
 		FString Title = TEXT("<None>");
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "ThingData")
 		UBoxComponent* ContactZone;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "ThingData")
+		bool IsEquip = false;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "ThingData")
+		int32 Power = 0;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "ThingData")
+		float AttackSpeed = 1.0f;
 
 	UFUNCTION(BlueprintCallable, BlueprintNativeEvent)
 		void Apply();

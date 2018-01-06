@@ -99,6 +99,7 @@ public:
 private:
 	FVector PredAttackCapsuleLocation;
 	void Death();
+	int32 GetPower();
 
 protected:
 	virtual bool CheckFriend(ACustomCharacterBase* Opponent);
