@@ -39,5 +39,7 @@ public:
 	UFUNCTION(BlueprintCallable, BlueprintNativeEvent)
 		void Apply();
 	UFUNCTION(BlueprintCallable, BlueprintNativeEvent)
+		void BeforeTake();
+	UFUNCTION(BlueprintCallable, BlueprintNativeEvent)
 		void WasTake();
 };

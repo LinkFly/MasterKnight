@@ -30,6 +30,11 @@ void AThingBase::Apply_Implementation()
 	//GEngine->AddOnScreenDebugMessage(-1, 5, FColor::Cyan, TEXT("Apply thing: ") + Title);
 }
 
+void AThingBase::BeforeTake_Implementation()
+{
+
+}
+
 void AThingBase::WasTake_Implementation()
 {
 	

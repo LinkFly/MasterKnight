@@ -27,6 +27,7 @@ void AThing::Take(ACustomCharacterBase* Owner)
 {
 	Owner->AddThing(this);
 	OwnerCharacter = Owner;
+	BeforeTake();
 	WasTake();
 }
 
