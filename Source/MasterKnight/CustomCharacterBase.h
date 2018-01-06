@@ -73,6 +73,8 @@ public:
 		UChildActorComponent* WeaponChildActor;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 		AThingBase* Weapon;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+		TSubclassOf<AThingBase> WeaponClass;
 
 	UFUNCTION(BlueprintCallable)
 		void BeginAttack(ACustomCharacterBase * Opponent);

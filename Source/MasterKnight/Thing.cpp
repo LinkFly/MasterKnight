@@ -27,6 +27,7 @@ void AThing::Take(ACustomCharacterBase* Owner)
 {
 	Owner->AddThing(this);
 	OwnerCharacter = Owner;
+	WasTake();
 }
 
 // Called every frame
@@ -42,7 +43,7 @@ void AThing::OnOverlapBegin(UPrimitiveComponent * OverlappedComp, AActor * Other
 	if (Owner) {
 		if (Owner->IsPlayerControlled()) {
 			Take(Owner);
-			SetActorHiddenInGame(true);
+			//SetActorHiddenInGame(true);
 		}
 	}
 }

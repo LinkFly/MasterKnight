@@ -11,7 +11,9 @@ ACustomCharacterBase::ACustomCharacterBase()
 	PrimaryActorTick.bCanEverTick = true;
 
 	WeaponChildActor = CreateDefaultSubobject<UChildActorComponent>("WeaponChildActor");
-	WeaponChildActor->SetupAttachment(RootComponent);
+	FAttachmentTransformRules AttachmentRules(FAttachmentTransformRules::SnapToTargetIncludingScale);
+	WeaponChildActor->AttachToComponent(RootComponent, AttachmentRules, FName("hand_rSocket"));
+	/*WeaponChildActor->SetupAttachment(RootComponent);*/
 }
 
 // Called when the game starts or when spawned
@@ -100,19 +102,30 @@ void ACustomCharacterBase::Damage(ACustomCharacterBase * Opponent)
 
 void ACustomCharacterBase::Equip()
 {
-	if (WeaponChildActor->GetChildActorClass()) {
-		Weapon = NewObject<AThingBase>(this, WeaponChildActor->GetChildActorClass());
+	//if (WeaponChildActor->GetChildActorClass()) {
+	//	Weapon = NewObject<AThingBase>(this, WeaponChildActor->GetChildActorClass());
+	//	if (Weapon) {
+	//		FAttachmentTransformRules AttachmentRules(FAttachmentTransformRules::SnapToTargetIncludingScale);
+	//		Weapon->AttachToComponent(WeaponChildActor, AttachmentRules);
+	//		Weapon->ContactZone->SetCollisionProfileName(FName("NoCollision"));
+	//	}
+	//}
+	/*if (WeaponClass) {
+		Weapon = NewObject<AThingBase>(this, WeaponClass);*/
 		if (Weapon) {
-			FAttachmentTransformRules AttachmentRules(FAttachmentTransformRules::SnapToTargetIncludingScale);
-			Weapon->AttachToComponent(WeaponChildActor, AttachmentRules);
 			Weapon->ContactZone->SetCollisionProfileName(FName("NoCollision"));
+			FAttachmentTransformRules AttachmentRules(FAttachmentTransformRules::SnapToTargetIncludingScale);
+			Weapon->AttachToComponent(GetMesh(), AttachmentRules, FName("hand_rSocket"));
+			Weapon->bHidden = false;
 		}
-	}
+	//}
 }
 
 void ACustomCharacterBase::UnEquip()
 {
 	if (Weapon) {
+		Weapon->DetachSceneComponentsFromParent(Weapon->GetParentComponent());
+		DelThing(Weapon);
 		Weapon->Destroy();
 		Weapon = nullptr;
 	}

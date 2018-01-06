@@ -27,6 +27,10 @@ void AThingBase::Tick(float DeltaTime)
 
 void AThingBase::Apply_Implementation()
 {
-	GEngine->AddOnScreenDebugMessage(-1, 5, FColor::Cyan, TEXT("Apply thing: ") + Title);
+	//GEngine->AddOnScreenDebugMessage(-1, 5, FColor::Cyan, TEXT("Apply thing: ") + Title);
 }
 
+void AThingBase::WasTake_Implementation()
+{
+	
+}
