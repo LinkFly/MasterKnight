@@ -47,7 +47,6 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 		bool IsDeath = false;
 
-
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 		UCapsuleComponent* AttackCapsule;
 
@@ -69,12 +68,12 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 		TArray<AThingBase*> Things;
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-		UChildActorComponent* WeaponChildActor;
+	/*UPROPERTY(EditAnywhere, BlueprintReadWrite)
+		UChildActorComponent* WeaponChildActor;*/
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 		AThingBase* Weapon;
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-		TSubclassOf<AThingBase> WeaponClass;
+	//UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	//	TSubclassOf<AThingBase> WeaponClass;
 
 	UFUNCTION(BlueprintCallable)
 		void BeginAttack(ACustomCharacterBase * Opponent);
@@ -93,7 +92,7 @@ public:
 	UFUNCTION(BlueprintCallable, BlueprintNativeEvent)
 		void DelThing(AThingBase* Thing);
 	UFUNCTION(BlueprintCallable)
-		void Equip();
+		void Equip(AThingBase* NewWeapon);
 	UFUNCTION(BlueprintCallable)
 		void UnEquip();
 

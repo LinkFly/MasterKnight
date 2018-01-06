@@ -10,9 +10,9 @@ ACustomCharacterBase::ACustomCharacterBase()
  	// Set this character to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 
-	WeaponChildActor = CreateDefaultSubobject<UChildActorComponent>("WeaponChildActor");
+	/*WeaponChildActor = CreateDefaultSubobject<UChildActorComponent>("WeaponChildActor");
 	FAttachmentTransformRules AttachmentRules(FAttachmentTransformRules::SnapToTargetIncludingScale);
-	WeaponChildActor->AttachToComponent(RootComponent, AttachmentRules, FName("hand_rSocket"));
+	WeaponChildActor->AttachToComponent(RootComponent, AttachmentRules, FName("hand_rSocket"));*/
 	/*WeaponChildActor->SetupAttachment(RootComponent);*/
 }
 
@@ -100,33 +100,22 @@ void ACustomCharacterBase::Damage(ACustomCharacterBase * Opponent)
 	}
 }
 
-void ACustomCharacterBase::Equip()
+void ACustomCharacterBase::Equip(AThingBase* NewWeapon)
 {
-	//if (WeaponChildActor->GetChildActorClass()) {
-	//	Weapon = NewObject<AThingBase>(this, WeaponChildActor->GetChildActorClass());
-	//	if (Weapon) {
-	//		FAttachmentTransformRules AttachmentRules(FAttachmentTransformRules::SnapToTargetIncludingScale);
-	//		Weapon->AttachToComponent(WeaponChildActor, AttachmentRules);
-	//		Weapon->ContactZone->SetCollisionProfileName(FName("NoCollision"));
-	//	}
-	//}
-	/*if (WeaponClass) {
-		Weapon = NewObject<AThingBase>(this, WeaponClass);*/
-		if (Weapon) {
-			Weapon->ContactZone->SetCollisionProfileName(FName("NoCollision"));
-			FAttachmentTransformRules AttachmentRules(FAttachmentTransformRules::SnapToTargetIncludingScale);
-			Weapon->AttachToComponent(GetMesh(), AttachmentRules, FName("hand_rSocket"));
-			Weapon->bHidden = false;
-		}
-	//}
+	if (NewWeapon) {
+		UnEquip();
+		Weapon = NewWeapon;
+		NewWeapon->ContactZone->SetCollisionProfileName(FName("NoCollision"));
+		FAttachmentTransformRules AttachmentRules(FAttachmentTransformRules::SnapToTargetIncludingScale);
+		NewWeapon->AttachToComponent(GetMesh(), AttachmentRules, FName("hand_rSocket"));
+		NewWeapon->bHidden = false;
+	}
 }
 
 void ACustomCharacterBase::UnEquip()
 {
 	if (Weapon) {
 		Weapon->DetachSceneComponentsFromParent(Weapon->GetParentComponent());
-		DelThing(Weapon);
-		Weapon->Destroy();
 		Weapon = nullptr;
 	}
 }

@@ -43,7 +43,6 @@ void AThing::OnOverlapBegin(UPrimitiveComponent * OverlappedComp, AActor * Other
 	if (Owner) {
 		if (Owner->IsPlayerControlled()) {
 			Take(Owner);
-			//SetActorHiddenInGame(true);
 		}
 	}
 }
