@@ -10,6 +10,8 @@
 #include "ThingBase.h"
 #include "CustomCharacterBase.generated.h"
 
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FUpdateInventoryDelegate, const TArray<AThingBase*>&, InventoryItems);
+
 UCLASS()
 class MASTERKNIGHT_API ACustomCharacterBase : public ACharacter
 {
@@ -95,6 +97,10 @@ public:
 		void Equip(AThingBase* NewWeapon);
 	UFUNCTION(BlueprintCallable)
 		void UnEquip();
+	UFUNCTION(BlueprintCallable)
+		void UpdateInventory();
+	UPROPERTY(BlueprintAssignable, Category = "Pickup")
+		FUpdateInventoryDelegate OnUpdateInventory;
 
 private:
 	FVector PredAttackCapsuleLocation;

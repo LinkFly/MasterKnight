@@ -148,6 +148,7 @@ void ACustomCharacterBase::AddThing_Implementation(AThingBase * Thing)
 	if (Things.Find(Thing) == INDEX_NONE) {
 		Things.Add(Thing);
 	}
+	UpdateInventory();
 }
 
 void ACustomCharacterBase::DelThing_Implementation(AThingBase * Thing)
@@ -156,4 +157,10 @@ void ACustomCharacterBase::DelThing_Implementation(AThingBase * Thing)
 	if (idx != INDEX_NONE) {
 		Things.RemoveAt(idx);
 	}
+	UpdateInventory();
+}
+
+void ACustomCharacterBase::UpdateInventory()
+{
+	OnUpdateInventory.Broadcast(Things);
 }

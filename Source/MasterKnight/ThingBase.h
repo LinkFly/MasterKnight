@@ -35,6 +35,8 @@ public:
 		int32 Power = 0;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "ThingData")
 		float AttackSpeed = 1.0f;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "ThingData")
+		UTexture2D* Image;
 
 	UFUNCTION(BlueprintCallable, BlueprintNativeEvent)
 		void Apply();
