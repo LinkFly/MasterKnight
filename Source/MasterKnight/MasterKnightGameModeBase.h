@@ -16,7 +16,7 @@ class MASTERKNIGHT_API AMasterKnightGameModeBase : public AGameModeBase
 	GENERATED_BODY()
 	
 	
-protected:
+public:
 	virtual void BeginPlay() override;
 
 	
