@@ -33,7 +33,7 @@ void AEnemyCharacterBase::BeginPlay() {
 	auto gameInstance = Cast<UCustomGameInstance>(GetGameInstance());
 	if (gameInstance) {
 		gameInstance->EnemyCount++;
-		GEngine->AddOnScreenDebugMessage(-1, 5, FColor::Black, FString::FromInt(gameInstance->EnemyCount));
+		/*GEngine->AddOnScreenDebugMessage(-1, 5, FColor::Black, FString::FromInt(gameInstance->EnemyCount));*/
 	}
 }
 
@@ -43,11 +43,12 @@ bool AEnemyCharacterBase::CheckFriend(ACustomCharacterBase* Opponent) {
 }
 
 void AEnemyCharacterBase::Death() {
+	if (IsDeath) return;
 	Super::Death();
 	auto gameInstance = Cast<UCustomGameInstance>(GetGameInstance());
 	if (gameInstance) {
 		gameInstance->EnemyCount--;
-		GEngine->AddOnScreenDebugMessage(-1, 5, FColor::Black, FString::FromInt(gameInstance->EnemyCount));
+		/*GEngine->AddOnScreenDebugMessage(-1, 5, FColor::Black, FString::FromInt(gameInstance->EnemyCount));*/
 		if (gameInstance->EnemyCount == 0) {
 			OnAllEnemyDeath.Broadcast();
 		}

@@ -41,7 +41,7 @@ void ACustomCharacterBase::OnOverlapBegin(UPrimitiveComponent* OverlappedComp, A
 		ACustomCharacterBase* opponent = Cast<ACustomCharacterBase>(OtherActor);
 		if (opponent) {
 			if (opponent != this && !CheckFriend(opponent)) {
-				GEngine->AddOnScreenDebugMessage(-1, 10, FColor::Green, TEXT("Attack!!!"));
+				/*GEngine->AddOnScreenDebugMessage(-1, 10, FColor::Green, TEXT("Attack!!!"));*/
 				Attack(opponent);
 			}
 		}
@@ -85,9 +85,9 @@ void ACustomCharacterBase::BeginAttack(ACustomCharacterBase * Opponent)
 void ACustomCharacterBase::Attack(ACustomCharacterBase * Opponent)
 {
 	Opponent->Damage(this);
-	FString NameLife = GetName() + TEXT("(") + FString::FromInt(Life) + TEXT(")");
+	/*FString NameLife = GetName() + TEXT("(") + FString::FromInt(Life) + TEXT(")");
 	FString OpponentNameLife = Opponent->GetName() + TEXT("(") + FString::FromInt(Opponent->Life) + TEXT(")");
-	GEngine->AddOnScreenDebugMessage(-1, 10, FColor::Green, NameLife + TEXT(" > ") + OpponentNameLife);
+	GEngine->AddOnScreenDebugMessage(-1, 10, FColor::Green, NameLife + TEXT(" > ") + OpponentNameLife);*/
 }
  
 void ACustomCharacterBase::Damage(ACustomCharacterBase * Opponent)
