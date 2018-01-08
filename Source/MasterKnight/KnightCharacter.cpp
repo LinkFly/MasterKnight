@@ -36,8 +36,23 @@ void AKnightCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCom
 	PlayerInputComponent->BindAction(TEXT("Attack"), IE_Pressed, this, &AKnightCharacter::SwordAttack);
 	PlayerInputComponent->BindAxis(TEXT("ForwardMove"), this, &AKnightCharacter::ForwardMove);
 	PlayerInputComponent->BindAxis(TEXT("RightMove"), this, &AKnightCharacter::RightMove);
-	PlayerInputComponent->BindAxis(TEXT("TurnHoriz"), this, &APawn::AddControllerYawInput);
-	PlayerInputComponent->BindAxis(TEXT("TurnVert"), this, &APawn::AddControllerPitchInput);
+	PlayerInputComponent->BindAxis(TEXT("TurnHoriz"), this, &AKnightCharacter::AddControllerYawInput);
+	PlayerInputComponent->BindAxis(TEXT("TurnVert"), this, &AKnightCharacter::AddControllerPitchInput);
+}
+
+void AKnightCharacter::AddControllerYawInput(float Val)
+{
+	UCustomGameInstance* gameInstance = Cast<UCustomGameInstance>(GetGameInstance());
+	if (gameInstance && !gameInstance->IsUsingInterface) {
+		Super::AddControllerYawInput(Val);
+	}
+}
+void AKnightCharacter::AddControllerPitchInput(float Val)
+{
+	UCustomGameInstance* gameInstance = Cast<UCustomGameInstance>(GetGameInstance());
+	if (gameInstance && !gameInstance->IsUsingInterface) {
+		Super::AddControllerPitchInput(Val);
+	}
 }
 
 void AKnightCharacter::BeginPlay()

@@ -28,6 +28,8 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "GameRuntimeData")
 		ACustomCharacterBase* PlayerCharacter = nullptr;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "GameRuntimeData")
+		bool IsUsingInterface = false;
 
 	UFUNCTION(BlueprintCallable)
 		void SaveGame();

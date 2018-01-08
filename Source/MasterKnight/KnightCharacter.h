@@ -42,6 +42,8 @@ public:
 
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 	virtual void BeginPlay() override;
+	virtual void AddControllerYawInput(float Val) override;
+	virtual void AddControllerPitchInput(float Val) override;
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 	void SwordAttack();
