@@ -95,5 +95,7 @@ void AKnightCharacter::BaseMove(float AxisValue, EAxis::Type Side)
 void AKnightCharacter::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-	
+	if (GetActorLocation().Z < 0) {
+		Death();
+	}
 }
