@@ -44,6 +44,7 @@ public:
 	virtual void BeginPlay() override;
 	virtual void AddControllerYawInput(float Val) override;
 	virtual void AddControllerPitchInput(float Val) override;
+	virtual void Death();
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 	void SwordAttack();

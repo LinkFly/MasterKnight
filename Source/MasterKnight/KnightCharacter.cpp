@@ -99,3 +99,11 @@ void AKnightCharacter::Tick(float DeltaTime)
 		Death();
 	}
 }
+
+void AKnightCharacter::Death() {
+	UCustomGameInstance* gameInstance = Cast<UCustomGameInstance>(GetGameInstance());
+	if (gameInstance) {
+		gameInstance->GameOver();
+	}
+}
+

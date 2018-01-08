@@ -129,11 +129,6 @@ void ACustomCharacterBase::Death() {
 	InitSomeFields();
 	GetCapsuleComponent()->SetCollisionProfileName(FName("CharacterMesh"));
 	AttackCapsule->SetCollisionProfileName(FName("NoCollision"));
-
-	UCustomGameInstance* gameInstance = Cast<UCustomGameInstance>(GetGameInstance());
-	if (gameInstance) {
-		gameInstance->GameOver();
-	}
 }
 int32 ACustomCharacterBase::GetPower()
 {

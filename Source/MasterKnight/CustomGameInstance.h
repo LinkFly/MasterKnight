@@ -31,6 +31,9 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "GameRuntimeData")
 		bool IsUsingInterface = false;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "GameRuntimeData")
+		int32 EnemyCount = 0;
+
 	UFUNCTION(BlueprintCallable)
 		void SaveGame();
 
@@ -40,9 +43,9 @@ public:
 	UFUNCTION(BlueprintCallable)
 		void SetPlayerCharacter(ACustomCharacterBase* CurPlayerCharacter);
 	
-	UFUNCTION(BlueprintImplementableEvent)
+	UFUNCTION(BlueprintCallable, BlueprintImplementableEvent)
 		void GameOver();
-	UFUNCTION(BlueprintImplementableEvent)
+	UFUNCTION(BlueprintCallable, BlueprintImplementableEvent)
 		void YouWin();
 };
 

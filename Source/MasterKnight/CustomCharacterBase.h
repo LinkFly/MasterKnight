@@ -108,7 +108,7 @@ private:
 
 protected:
 	virtual bool CheckFriend(ACustomCharacterBase* Opponent);
-	void Death();
+	virtual void Death();
 };
 
 
