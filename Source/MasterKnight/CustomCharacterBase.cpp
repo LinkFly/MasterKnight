@@ -3,6 +3,7 @@
 #include "CustomCharacterBase.h"
 #include "Thing.h"
 #include "Engine.h"
+#include "CustomGameInstance.h"
 
 // Sets default values
 ACustomCharacterBase::ACustomCharacterBase()
@@ -128,6 +129,11 @@ void ACustomCharacterBase::Death() {
 	InitSomeFields();
 	GetCapsuleComponent()->SetCollisionProfileName(FName("CharacterMesh"));
 	AttackCapsule->SetCollisionProfileName(FName("NoCollision"));
+
+	UCustomGameInstance* gameInstance = Cast<UCustomGameInstance>(GetGameInstance());
+	if (gameInstance) {
+		gameInstance->GameOver();
+	}
 }
 int32 ACustomCharacterBase::GetPower()
 {

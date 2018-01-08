@@ -40,4 +40,9 @@ public:
 	UFUNCTION(BlueprintCallable)
 		void SetPlayerCharacter(ACustomCharacterBase* CurPlayerCharacter);
 	
+	UFUNCTION(BlueprintImplementableEvent)
+		void GameOver();
+	UFUNCTION(BlueprintImplementableEvent)
+		void YouWin();
 };
+
