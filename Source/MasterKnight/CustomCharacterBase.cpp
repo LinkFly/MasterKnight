@@ -97,7 +97,6 @@ void ACustomCharacterBase::Damage(ACustomCharacterBase * Opponent)
 	/*GEngine->AddOnScreenDebugMessage(-1, 5, FColor::Red, TEXT("Life After: ") + FString::FromInt(Life));*/
 	if (Life <= 0) {
 		/*GEngine->AddOnScreenDebugMessage(-1, 5, FColor::Red, TEXT("Life <= 0: ") + FString::FromInt(Life));*/
-		IsDeath = true;
 		this->Death();
 	}
 	else {
