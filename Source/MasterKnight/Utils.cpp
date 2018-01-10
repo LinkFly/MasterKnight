@@ -11,15 +11,17 @@ AUtils::AUtils()
 
 UClass* AUtils::FindClass(FString NameOfClass)
 {
-	//const TCHAR* ClassName = *NameOfClass;
-	//check(ClassName);
+	// Bad Code!!!!!!!!!!!!!!
+	/*const TCHAR* ClassName = *NameOfClass;
+	check(ClassName);
 
-	//UObject* ClassPackage = Cast<UObject>(ANY_PACKAGE);
+	UObject* ClassPackage = Cast<UObject>(ANY_PACKAGE);
 
-	//if (UClass* Result = FindObject<UClass>(ClassPackage, ClassName))
-	//	return Cast<UClass>(Result);
-	//if (UObjectRedirector* RenamedClassRedirector = FindObject<UObjectRedirector>(ClassPackage, ClassName))
-	//	return (UClass*)CastChecked<UClass>(RenamedClassRedirector->DestinationObject);
-
+	if (ClassPackage) {
+		if (UClass* Result = FindObject<UClass>(ClassPackage, ClassName))
+			return Cast<UClass>(Result);
+		if (UObjectRedirector* RenamedClassRedirector = FindObject<UObjectRedirector>(ClassPackage, ClassName))
+			return (UClass*)CastChecked<UClass>(RenamedClassRedirector->DestinationObject);
+	}*/
 	return nullptr;
 }

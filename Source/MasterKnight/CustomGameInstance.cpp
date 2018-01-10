@@ -17,19 +17,21 @@ void UCustomGameInstance::LoadGame()
 		else {
 			GEngine->AddOnScreenDebugMessage(-1, 5, FColor::Red, TEXT("Failed - Not setted PlayerCharacter!"));
 		}
-		
+		int32 thingsCount = SaveGameObj->ThingsClassNames.Num();
+		for (int i = 0; i < thingsCount; i++) {
+			FString curClsName = SaveGameObj->ThingsClassNames[i];
+			GEngine->AddOnScreenDebugMessage(-1, 5, FColor::Cyan, TEXT("Loaded CLASS: ") + curClsName);
+			TSubclassOf<AThingBase> ThingClass = NameClassTable[curClsName];
+			CreateThing(ThingClass);
+			if (LastThing) {
+				PlayerCharacter->Things.Add(LastThing);
+			}
+		}
+		PlayerCharacter->UpdateInventory();
 	}
 	else {
-		GEngine->AddOnScreenDebugMessage(-1, 5, FColor::Red, TEXT("Failed - Not saved!"));
+		/*GEngine->AddOnScreenDebugMessage(-1, 5, FColor::Red, TEXT("Failed - Not saved!"));*/
 	}
-
-	int32 thingsCount = SaveGameObj->ThingsClassNames.Num();
-	for (int i = 0; i < thingsCount; i++) {
-		FString curClsName = SaveGameObj->ThingsClassNames[i];
-		GEngine->AddOnScreenDebugMessage(-1, 5, FColor::Cyan, TEXT("Loaded CLASS: ") + curClsName);
-		// TODO Here create Things from classes name
-	}
-	
 }
 
 void UCustomGameInstance::SetPlayerCharacter(ACustomCharacterBase * CurPlayerCharacter)
@@ -44,22 +46,23 @@ void UCustomGameInstance::SaveGame()
 	if (SaveGameObj) {
 		SaveGameObj->PlayerName = PlayerName;
 		SaveGameObj->PlayerPosition = PlayerCharacter->GetActorLocation();
+		/*ACharacter character = UGameplayStatics::GetPlayerCharacter(GetWorld(), 0);*/
+		if (PlayerCharacter) {
+			/*auto iter = PlayerCharacter->Things.CreateIterator();*/
+			int32 thingsCount = PlayerCharacter->Things.Num();
+			for (int i = 0; i < thingsCount; i++) {
+				UClass* curCls = PlayerCharacter->Things[i]->GetClass();
+				GEngine->AddOnScreenDebugMessage(-1, 5, FColor::Cyan, TEXT("Saved CLASS: ") + curCls->GetName());
+				SaveGameObj->ThingsClassNames.Add(curCls->GetName());
+			}
+		}
+		// Saving
 		UGameplayStatics::SaveGameToSlot(SaveGameObj, SaveGameObj->SaveSlotName, SaveGameObj->SlotIndex);
 		GEngine->AddOnScreenDebugMessage(-1, 5, FColor::Cyan, TEXT("Game saved!"));
-	}
-	
-	/*ACharacter character = UGameplayStatics::GetPlayerCharacter(GetWorld(), 0);*/
-	if (PlayerCharacter) {
-		/*auto iter = PlayerCharacter->Things.CreateIterator();*/
-		int32 thingsCount = PlayerCharacter->Things.Num();
-		for (int i = 0; i < thingsCount; i++) {
-			UClass* curCls = PlayerCharacter->Things[i]->GetClass();
-			GEngine->AddOnScreenDebugMessage(-1, 5, FColor::Cyan, TEXT("Saved CLASS: ") + curCls->GetName());
-			SaveGameObj->ThingsClassNames.Add(curCls->GetName());
-		}
 	}
 }
 
 UCustomGameInstance::UCustomGameInstance() {
 	
 }
+

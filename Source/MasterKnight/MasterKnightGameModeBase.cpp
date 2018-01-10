@@ -3,8 +3,8 @@
 #include "MasterKnightGameModeBase.h"
 
 void AMasterKnightGameModeBase::BeginPlay() {
-	auto gameInstance = Cast<UCustomGameInstance>(GetGameInstance());
-	gameInstance->LoadGame();
+	/*auto gameInstance = Cast<UCustomGameInstance>(GetGameInstance());
+	gameInstance->LoadGame();*/
 }
 
 

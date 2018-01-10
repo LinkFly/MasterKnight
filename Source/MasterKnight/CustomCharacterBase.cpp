@@ -149,6 +149,8 @@ void ACustomCharacterBase::AddThing_Implementation(AThingBase * Thing)
 	if (Things.Find(Thing) == INDEX_NONE) {
 		Things.Add(Thing);
 	}
+	auto curThing = Cast<AThing>(Thing);
+	if (curThing) curThing->OwnerCharacter = this;
 	UpdateInventory();
 }
 
@@ -158,6 +160,8 @@ void ACustomCharacterBase::DelThing_Implementation(AThingBase * Thing)
 	if (idx != INDEX_NONE) {
 		Things.RemoveAt(idx);
 	}
+	auto curThing = Cast<AThing>(Thing);
+	if(curThing) curThing->OwnerCharacter = this;
 	UpdateInventory();
 }
 
@@ -165,3 +169,4 @@ void ACustomCharacterBase::UpdateInventory()
 {
 	OnUpdateInventory.Broadcast(Things);
 }
+ 

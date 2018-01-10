@@ -34,6 +34,12 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "GameRuntimeData")
 		int32 EnemyCount = 0;
 
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "GameRuntimeData")
+		TMap<FString, TSubclassOf<AThingBase>> NameClassTable;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "GameRuntimeData")
+		AThingBase* LastThing;
+
 	UFUNCTION(BlueprintCallable)
 		void SaveGame();
 
@@ -47,5 +53,7 @@ public:
 		void GameOver();
 	UFUNCTION(BlueprintCallable, BlueprintImplementableEvent)
 		void YouWin();
+	UFUNCTION(BlueprintCallable, BlueprintImplementableEvent)
+		void CreateThing(TSubclassOf<AThingBase> ThingClass);
 };
 
