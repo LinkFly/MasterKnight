@@ -2,7 +2,7 @@
 
 #include "CustomSaveGame.h"
 
-UCustomSaveGame::UCustomSaveGame() : PlayerName("DefaultName"), SlotIndex(0), SaveSlotName("Test") {
+UCustomSaveGame::UCustomSaveGame() : PlayerName("DefaultName"), PlayerLife(100), WeaponThingIdx(-1), SlotIndex(0), SaveSlotName("Test") {
 	PlayerPosition = FVector::ZeroVector;
 }
 

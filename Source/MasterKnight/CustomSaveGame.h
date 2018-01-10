@@ -23,6 +23,12 @@ public:
 		FString PlayerName;
 
 	UPROPERTY(VisibleAnywhere, Category = Basic)
+		int32 PlayerLife;
+
+	UPROPERTY(VisibleAnywhere, Category = Basic)
+		int32 WeaponThingIdx;
+
+	UPROPERTY(VisibleAnywhere, Category = Basic)
 		FString SaveSlotName;
 
 	UPROPERTY(VisibleAnywhere, Category = Basic)
