@@ -25,6 +25,11 @@ void AThingBase::Tick(float DeltaTime)
 
 }
 
+AThingBase * AThingBase::MakeInstance(UObject * Outer, UClass * Class, FName Name = NAME_None)
+{
+	return NewObject<AThingBase>(Outer, Class, Name);
+}
+
 void AThingBase::Apply_Implementation()
 {
 	//GEngine->AddOnScreenDebugMessage(-1, 5, FColor::Cyan, TEXT("Apply thing: ") + Title);

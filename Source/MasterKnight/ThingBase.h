@@ -38,6 +38,9 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "ThingData")
 		UTexture2D* Image;
 
+	UFUNCTION(BlueprintCallable)
+		static AThingBase* MakeInstance(UObject* Outer, UClass* Class, FName Name);
+
 	UFUNCTION(BlueprintCallable, BlueprintNativeEvent)
 		void Apply();
 	UFUNCTION(BlueprintCallable, BlueprintNativeEvent)

@@ -2,6 +2,7 @@
 
 #include "CustomGameInstance.h"
 
+
 void UCustomGameInstance::LoadGame()
 {
 	UCustomSaveGame* SaveGameObj = Cast<UCustomSaveGame>(UGameplayStatics::CreateSaveGameObject(UCustomSaveGame::StaticClass()));
@@ -21,6 +22,13 @@ void UCustomGameInstance::LoadGame()
 	else {
 		GEngine->AddOnScreenDebugMessage(-1, 5, FColor::Red, TEXT("Failed - Not saved!"));
 	}
+
+	int32 thingsCount = SaveGameObj->ThingsClassNames.Num();
+	for (int i = 0; i < thingsCount; i++) {
+		FString curClsName = SaveGameObj->ThingsClassNames[i];
+		GEngine->AddOnScreenDebugMessage(-1, 5, FColor::Cyan, TEXT("Loaded CLASS: ") + curClsName);
+		// TODO Here create Things from classes name
+	}
 	
 }
 
@@ -38,6 +46,17 @@ void UCustomGameInstance::SaveGame()
 		SaveGameObj->PlayerPosition = PlayerCharacter->GetActorLocation();
 		UGameplayStatics::SaveGameToSlot(SaveGameObj, SaveGameObj->SaveSlotName, SaveGameObj->SlotIndex);
 		GEngine->AddOnScreenDebugMessage(-1, 5, FColor::Cyan, TEXT("Game saved!"));
+	}
+	
+	/*ACharacter character = UGameplayStatics::GetPlayerCharacter(GetWorld(), 0);*/
+	if (PlayerCharacter) {
+		/*auto iter = PlayerCharacter->Things.CreateIterator();*/
+		int32 thingsCount = PlayerCharacter->Things.Num();
+		for (int i = 0; i < thingsCount; i++) {
+			UClass* curCls = PlayerCharacter->Things[i]->GetClass();
+			GEngine->AddOnScreenDebugMessage(-1, 5, FColor::Cyan, TEXT("Saved CLASS: ") + curCls->GetName());
+			SaveGameObj->ThingsClassNames.Add(curCls->GetName());
+		}
 	}
 }
 

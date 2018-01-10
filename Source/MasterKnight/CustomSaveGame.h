@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/SaveGame.h"
+#include "Thing.h"
 #include "CustomSaveGame.generated.h"
 
 /**
@@ -29,4 +30,9 @@ public:
 
 	UPROPERTY(VisibleAnywhere, Category = Basic)
 		FVector PlayerPosition;
+	UPROPERTY(VisibleAnywhere, Category = Basic)
+		TArray<FString> ThingsClassNames;
+	UPROPERTY(VisibleAnywhere, Category = Basic)
+		FString LastWeapon;
+
 };

@@ -11,6 +11,7 @@ ASaveGameActor::ASaveGameActor()
 	USceneComponent* Scene = CreateDefaultSubobject<USceneComponent>("Scene");
 	RootComponent = Scene;
 	SaveZone = CreateDefaultSubobject<UBoxComponent>("SaveZone");
+	// TODO Change deprecated method AttachTo
 	SaveZone->AttachTo(Scene);
 	SaveZone->OnComponentBeginOverlap.AddDynamic(this, &ASaveGameActor::OnOverlapBegin);
 }
