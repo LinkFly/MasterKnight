@@ -84,6 +84,7 @@ void ACustomCharacterBase::BeginAttack(ACustomCharacterBase * Opponent)
 
 void ACustomCharacterBase::Attack(ACustomCharacterBase * Opponent)
 {
+	/*GEngine->AddOnScreenDebugMessage(-1, 5, FColor::Red, TEXT("Life Before: ") + FString::FromInt(Opponent->Life));*/
 	Opponent->Damage(this);
 	/*FString NameLife = GetName() + TEXT("(") + FString::FromInt(Life) + TEXT(")");
 	FString OpponentNameLife = Opponent->GetName() + TEXT("(") + FString::FromInt(Opponent->Life) + TEXT(")");
@@ -92,9 +93,12 @@ void ACustomCharacterBase::Attack(ACustomCharacterBase * Opponent)
  
 void ACustomCharacterBase::Damage(ACustomCharacterBase * Opponent)
 {
-	Life -= Opponent->GetPower();
+	Life -= Opponent->GetPower(); 
+	/*GEngine->AddOnScreenDebugMessage(-1, 5, FColor::Red, TEXT("Life After: ") + FString::FromInt(Life));*/
 	if (Life <= 0) {
-		Death();
+		/*GEngine->AddOnScreenDebugMessage(-1, 5, FColor::Red, TEXT("Life <= 0: ") + FString::FromInt(Life));*/
+		IsDeath = true;
+		this->Death();
 	}
 	else {
 		IsDamage = true;
@@ -125,6 +129,7 @@ void ACustomCharacterBase::UnEquip()
 
 void ACustomCharacterBase::Death() {
 	IsDeath = true;
+	/*GEngine->AddOnScreenDebugMessage(-1, 5, FColor::Red, TEXT("IsDeath: ") + FString::FromInt(IsDeath));*/
 	Target = nullptr;
 	InitSomeFields();
 	GetCapsuleComponent()->SetCollisionProfileName(FName("CharacterMesh"));
