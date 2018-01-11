@@ -33,6 +33,13 @@ void AEnemyCharacterBase::BeginPlay() {
 	auto gameInstance = Cast<UCustomGameInstance>(GetGameInstance());
 	if (gameInstance) {
 		gameInstance->EnemyCount++;
+		int32 uid = GetUniqueID();
+		UEnemyData* enemyData = NewObject<UEnemyData>(this, UEnemyData::StaticClass());
+		enemyData->Enemy = this;
+		enemyData->Life = Life;
+		enemyData->IsDeath = IsDeath;
+		enemyData->Position = GetActorLocation();
+		gameInstance->EnemiesData.Add(uid, enemyData);
 		/*GEngine->AddOnScreenDebugMessage(-1, 5, FColor::Black, FString::FromInt(gameInstance->EnemyCount));*/
 	}
 }

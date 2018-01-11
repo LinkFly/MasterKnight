@@ -7,7 +7,20 @@
 #include "CustomSaveGame.h"
 #include "Kismet/GameplayStatics.h"
 #include "CustomCharacterBase.h"
+#include "EnemyCharacterBase.h"
 #include "CustomGameInstance.generated.h"
+
+UCLASS()
+class MASTERKNIGHT_API UEnemyData : public UObject
+{
+	GENERATED_BODY()
+
+public:
+	AEnemyCharacterBase* Enemy;
+	FVector Position;
+	bool IsDeath;
+	int32 Life;
+};
 
 /**
  * 
@@ -25,6 +38,8 @@ public:
 		FString PlayerName = TEXT("<Noname>");
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "GameData")
 		FVector PlayerPosition = FVector::ZeroVector;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "GameData")
+		TMap<int32, UEnemyData*> EnemiesData;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "GameRuntimeData")
 		ACustomCharacterBase* PlayerCharacter = nullptr;

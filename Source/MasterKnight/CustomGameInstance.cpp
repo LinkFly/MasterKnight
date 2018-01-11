@@ -44,7 +44,7 @@ void UCustomGameInstance::LoadGame()
 void UCustomGameInstance::SetPlayerCharacter(ACustomCharacterBase * CurPlayerCharacter)
 {
 	PlayerCharacter = CurPlayerCharacter;
-	//PlayerCharacter->SetActorLocation(PlayerPosition);
+	PlayerPosition = PlayerCharacter->GetActorLocation();
 }
 
 void UCustomGameInstance::SaveGame()
