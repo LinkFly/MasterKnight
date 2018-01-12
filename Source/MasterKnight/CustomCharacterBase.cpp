@@ -133,6 +133,7 @@ void ACustomCharacterBase::Death() {
 	InitSomeFields();
 	GetCapsuleComponent()->SetCollisionProfileName(FName("CharacterMesh"));
 	AttackCapsule->SetCollisionProfileName(FName("NoCollision"));
+	
 }
 int32 ACustomCharacterBase::GetPower()
 {
