@@ -93,6 +93,8 @@ public:
 		void AddThing(AThingBase* Thing);
 	UFUNCTION(BlueprintCallable, BlueprintNativeEvent)
 		void DelThing(AThingBase* Thing);
+	UFUNCTION(BlueprintCallable, BlueprintNativeEvent)
+		void WasDeath(AThingBase* Thing);
 	UFUNCTION(BlueprintCallable)
 		void Equip(AThingBase* NewWeapon);
 	UFUNCTION(BlueprintCallable)
