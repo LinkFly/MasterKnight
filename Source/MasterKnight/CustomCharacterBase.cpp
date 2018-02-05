@@ -10,11 +10,6 @@ ACustomCharacterBase::ACustomCharacterBase()
 {
  	// Set this character to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
-
-	/*WeaponChildActor = CreateDefaultSubobject<UChildActorComponent>("WeaponChildActor");
-	FAttachmentTransformRules AttachmentRules(FAttachmentTransformRules::SnapToTargetIncludingScale);
-	WeaponChildActor->AttachToComponent(RootComponent, AttachmentRules, FName("hand_rSocket"));*/
-	/*WeaponChildActor->SetupAttachment(RootComponent);*/
 }
 
 // Called when the game starts or when spawned
@@ -41,7 +36,6 @@ void ACustomCharacterBase::OnOverlapBegin(UPrimitiveComponent* OverlappedComp, A
 		ACustomCharacterBase* opponent = Cast<ACustomCharacterBase>(OtherActor);
 		if (opponent) {
 			if (opponent != this && !CheckFriend(opponent)) {
-				/*GEngine->AddOnScreenDebugMessage(-1, 10, FColor::Green, TEXT("Attack!!!"));*/
 				Attack(opponent);
 			}
 		}
@@ -54,20 +48,6 @@ void ACustomCharacterBase::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 	Speed = GetVelocity().Size();
-	//if (AttackCapsule) {
-	//	//AttackSpeed = AttackCapsule->GetComponentVelocity().Size();
-	//	
-	//	FVector curAttackCapsuleLocation = AttackCapsule->GetComponentLocation();
-	//	FVector DiffLocation = curAttackCapsuleLocation - PredAttackCapsuleLocation;
-	//	AttackingDiff = DiffLocation.Size();
-	//	AttackSpeed = AttackingDiff * DeltaTime;
-	//	/*GEngine->AddOnScreenDebugMessage(-1, 5, FColor::Green, FString::SanitizeFloat(AttackSpeed));*/
-	//	if (IsAttack && (AttackSpeed >= MinAttackSpeed) && !IsDeath) {
-	//		IsEnoughAttackPower = true;
-	//		//GEngine->AddOnScreenDebugMessage(-1, 5, FColor::Green, FString::SanitizeFloat(AttackSpeed));
-	//	}
-	//	PredAttackCapsuleLocation = curAttackCapsuleLocation;
-	//} 
 }
 
 // Called to bind functionality to input
@@ -78,25 +58,18 @@ void ACustomCharacterBase::SetupPlayerInputComponent(UInputComponent* PlayerInpu
 
 void ACustomCharacterBase::BeginAttack(ACustomCharacterBase * Opponent)
 {
-	//GEngine->AddOnScreenDebugMessage(-1, 10, FColor::Cyan, GetName() + TEXT(" > ") + Opponent->GetName() + TEXT(" (Begin Attack)"));
 	IsAttack = true;
 }
 
 void ACustomCharacterBase::Attack(ACustomCharacterBase * Opponent)
 {
-	/*GEngine->AddOnScreenDebugMessage(-1, 5, FColor::Red, TEXT("Life Before: ") + FString::FromInt(Opponent->Life));*/
 	Opponent->Damage(this);
-	/*FString NameLife = GetName() + TEXT("(") + FString::FromInt(Life) + TEXT(")");
-	FString OpponentNameLife = Opponent->GetName() + TEXT("(") + FString::FromInt(Opponent->Life) + TEXT(")");
-	GEngine->AddOnScreenDebugMessage(-1, 10, FColor::Green, NameLife + TEXT(" > ") + OpponentNameLife);*/
 }
  
 void ACustomCharacterBase::Damage(ACustomCharacterBase * Opponent)
 {
 	Life -= Opponent->GetPower(); 
-	/*GEngine->AddOnScreenDebugMessage(-1, 5, FColor::Red, TEXT("Life After: ") + FString::FromInt(Life));*/
 	if (Life <= 0) {
-		/*GEngine->AddOnScreenDebugMessage(-1, 5, FColor::Red, TEXT("Life <= 0: ") + FString::FromInt(Life));*/
 		this->Death();
 	}
 	else {

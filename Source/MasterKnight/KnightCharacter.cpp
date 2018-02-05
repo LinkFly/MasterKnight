@@ -64,20 +64,17 @@ void AKnightCharacter::BeginPlay()
 
 void AKnightCharacter::SwordAttack()
 {
-	//GEngine->AddOnScreenDebugMessage(-1, 3, FColor::Green, TEXT("Attack"));
-	BeginAttack(nullptr);
+	BeginAttack();
 }
 
 void AKnightCharacter::ForwardMove(float AxisValue)
 {
-	//GEngine->AddOnScreenDebugMessage(-1, 3, FColor::Green, TEXT("ForwardMove: ") + FString::SanitizeFloat(AxisValue));
 	BackwardForwardAxisValue = AxisValue;
 	BaseMove(AxisValue, EAxis::X);
 }
 
 void AKnightCharacter::RightMove(float AxisValue)
 {
-	//GEngine->AddOnScreenDebugMessage(-1, 3, FColor::Green, TEXT("RightMove: ") + FString::SanitizeFloat(AxisValue));
 	BaseMove(AxisValue, EAxis::Y);
 	LeftRightAxisValue = AxisValue;
 }

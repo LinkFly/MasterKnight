@@ -78,7 +78,7 @@ public:
 	//	TSubclassOf<AThingBase> WeaponClass;
 
 	UFUNCTION(BlueprintCallable)
-		void BeginAttack(ACustomCharacterBase * Opponent);
+		void BeginAttack(ACustomCharacterBase * Opponent = nullptr);
 	UFUNCTION(BlueprintCallable)
 		void Attack(ACustomCharacterBase* Opponent);
 	UFUNCTION(BlueprintCallable)
