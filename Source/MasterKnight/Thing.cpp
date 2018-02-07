@@ -12,7 +12,8 @@ AThing::AThing()
 	USceneComponent* Scene = CreateDefaultSubobject<USceneComponent>("Scene");
 	RootComponent = Scene;
 	ContactZone = CreateDefaultSubobject<UBoxComponent>("SaveZone");
-	ContactZone->AttachTo(Scene);
+	FAttachmentTransformRules AttachmentRules(FAttachmentTransformRules::SnapToTargetIncludingScale);
+	ContactZone->AttachToComponent(Scene, AttachmentRules);
 	ContactZone->OnComponentBeginOverlap.AddDynamic(this, &AThing::OnOverlapBegin);
 }
 
