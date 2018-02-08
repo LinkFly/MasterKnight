@@ -7,25 +7,6 @@
 #include "CustomGameInstance.h"
 
 AEnemyCharacterBase::AEnemyCharacterBase() {
-	//UClass* blueprintClass = FindClass<UBlueprintGeneratedClass>(ANY_PACKAGE, TEXT("Blueprint'/Game/AI/EnemyBase_AICon.EnemyBase_AICon'"));
-
-	/*ConstructorHelpers::FObjectFinder<UBlueprintGeneratedClass> Result(TEXT("Blueprint'/Game/AI/EnemyBase_AICon.EnemyBase_AICon'"));*/
-	//if(blueprintClass){
-	////if (AIControllerAsset.Succeeded()) {
-	//	GEngine->AddOnScreenDebugMessage(-1, 5, FColor::Green, TEXT("Finded Blueprint class!!!!!!!!!"));
-	//}
-	//else {
-	//	GEngine->AddOnScreenDebugMessage(-1, 5, FColor::Green, TEXT("Failed !!!! Finded Blueprint class!!!!!!!!!"));
-	//}
-
-	//UClass* Result = FindClass<UClass>(TEXT("Blueprint'/Game/AI/EnemyBase_AICon.EnemyBase_AICon'"));
-	/*if (Result.Object) {
-		GEngine->AddOnScreenDebugMessage(-1, 5, FColor::Green, TEXT("Finded Blueprint class!!!!!!!!!"));
-	}
-	else {
-		GEngine->AddOnScreenDebugMessage(-1, 5, FColor::Green, TEXT("Failed !!!! Finded Blueprint class!!!!!!!!!"));
-	}*/
-	// TODO Maybe save increment/decrement gameInstance->EnemyCount
 }
 
 void AEnemyCharacterBase::BeginPlay() {
